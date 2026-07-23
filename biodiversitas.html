@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biodiversitas Laut Makassar - Lelong.ID</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+      <div class="container">
+        <a class="navbar-brand fw-bold fs-3" href="index.html">
+          🌊 Lelong.ID
+        </a>
+
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Beranda</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="budaya.html"> Budaya Maritim </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="biodiversitas.html">
+                Biodiversitas Laut
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="akuakultur.html"> Akuakultur </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="marketplace.html"> Marketplace </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="komunitas.html"> Komunitas </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="tentang.html"> Tentang Kami </a>
+            </li>
+            <li class="nav-item" id="loginMenu">
+              <a class="nav-link" href="login.html"> Login </a>
+            </li>
+
+            <li class="nav-item d-none" id="userMenu">
+              <span class="nav-link text-info" id="userName"> Halo </span>
+            </li>
+
+            <li class="nav-item d-none" id="logoutMenu">
+              <a class="nav-link text-danger" href="#" id="logoutBtn">
+                Logout
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <video autoplay muted loop playsinline class="back-video">
+        <source src="videos/laut.mp4" type="video/mp4" />
+      </video>
+
+      <div class="overlay"></div>
+
+      <div class="content">
+        <h1>Biodiversitas Laut Makassar</h1>
+
+        <h3>Kekayaan Biota Laut yang Mendukung Ekonomi Biru Berkelanjutan</h3>
+      </div>
+    </section>
+
+    <!-- Biota Laut -->
+    <section class="fitur">
+      <div class="container">
+        <h2 class="text-center mb-5">Keanekaragaman Biota Laut</h2>
+
+        <div class="row">
+          <!-- Kerapu -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+              <img src="Images/ikan-kerapu.jpg" class="card-img-top" />
+
+              <div class="card-body">
+                <h4>🐟 Ikan Kerapu</h4>
+
+                <p>
+                  Ikan bernilai ekonomi tinggi yang banyak dibudidayakan dan
+                  menjadi komoditas ekspor.
+                </p>
+
+                <b>Manfaat :</b>
+
+                <ul>
+                  <li>Konsumsi</li>
+                  <li>Budidaya</li>
+                  <li>Ekspor</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Udang -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+              <img src="Images/udang.jpg" class="card-img-top" />
+
+              <div class="card-body">
+                <h4>🦐 Udang</h4>
+
+                <p>Komoditas unggulan dengan nilai ekspor tinggi.</p>
+
+                <b>Manfaat :</b>
+
+                <ul>
+                  <li>Ekspor</li>
+                  <li>Konsumsi</li>
+                  <li>Budidaya</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rumput Laut -->
+          <div class="col-md-4 mb-4">
+            <div class="card shadow h-100">
+              <img src="Images/rumput-raut.jpg" class="card-img-top" />
+
+              <div class="card-body">
+                <h4>🌿 Rumput Laut</h4>
+
+                <p>
+                  Salah satu komoditas utama Makassar yang dimanfaatkan di
+                  berbagai industri.
+                </p>
+
+                <b>Manfaat :</b>
+
+                <ul>
+                  <li>Pangan</li>
+                  <li>Kosmetik</li>
+                  <li>Farmasi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kepiting -->
+          <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+              <img src="Images/kepiting.jpg" class="card-img-top" />
+
+              <div class="card-body">
+                <h4>🦀 Kepiting</h4>
+
+                <p>
+                  Memiliki nilai ekonomi tinggi dan menjadi sumber protein
+                  masyarakat pesisir.
+                </p>
+
+                <b>Manfaat :</b>
+
+                <ul>
+                  <li>Konsumsi</li>
+                  <li>Ekspor</li>
+                  <li>Budidaya</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terumbu -->
+          <div class="col-md-6 mb-4">
+            <div class="card shadow h-100">
+              <img src="Images/terumbu-karang.jpg" class="card-img-top" />
+
+              <div class="card-body">
+                <h4>🪸 Terumbu Karang</h4>
+
+                <p>
+                  Ekosistem penting sebagai habitat berbagai biota laut dan
+                  penyangga ekosistem pesisir.
+                </p>
+
+                <b>Manfaat :</b>
+
+                <ul>
+                  <li>Habitat biota laut</li>
+                  <li>Pariwisata bahari</li>
+                  <li>Pelestarian lingkungan</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistik -->
+    <section class="statistik">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <h1 class="counter" data-target="200">0</h1>
+            <p>Jenis Biota Laut</p>
+          </div>
+
+          <div class="col-md-4">
+            <h1 class="counter" data-target="50">0</h1>
+            <p>Komoditas Laut</p>
+          </div>
+
+          <div class="col-md-4">
+            <h1 class="counter" data-target="100">0</h1>
+            <p>Lokasi Potensi Perairan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container text-center">
+        <h4>Lelong.ID</h4>
+
+        <p>Platform Digital Ekosistem Maritim Makassar</p>
+
+        <p>© 2026 All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    </script>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
