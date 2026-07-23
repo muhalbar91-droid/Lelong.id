@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lelong.ID - Platform Lelang & Perdagangan Perikanan Terpadu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 24px -10px rgba(56, 189, 248, 0.25);
+        }
+        .ocean-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
+        }
+        .cyan-glow {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('home')">
+                    <div class="w-11 h-11 rounded-xl ocean-gradient flex items-center justify-center text-white shadow-lg cyan-glow border border-sky-400/30">
+                        <i class="fa-solid fa-anchor text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-cyan-300 to-teal-200">
+                            LELONG<span class="text-sky-400">.ID</span>
+                        </span>
+                        <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase -mt-1">Digital Marine Auction</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden xl:flex items-center space-x-1">
+                    <button onclick="switchTab('home')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="home">
+                        <i class="fa-solid fa-house mr-1.5 text-xs"></i> Beranda
+                    </button>
+                    <button onclick="switchTab('marketplace')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="marketplace">
+                        <i class="fa-solid fa-gavel mr-1.5 text-xs"></i> Marketplace
+                    </button>
+                    <button onclick="switchTab('akuakultur')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="akuakultur">
+                        <i class="fa-solid fa-fish-fins mr-1.5 text-xs"></i> Akuakultur
+                    </button>
+                    <button onclick="switchTab('biodiversitas')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="biodiversitas">
+                        <i class="fa-solid fa-water mr-1.5 text-xs"></i> Biodiversitas
+                    </button>
+                    <button onclick="switchTab('budaya')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="budaya">
+                        <i class="fa-solid fa-ship mr-1.5 text-xs"></i> Budaya
+                    </button>
+                    <button onclick="switchTab('komunitas')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="komunitas">
+                        <i class="fa-solid fa-users mr-1.5 text-xs"></i> Komunitas
+                    </button>
+                    <button onclick="switchTab('tentang')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:text-sky-400 hover:bg-slate-800/60 transition" data-tab="tentang">
+                        <i class="fa-solid fa-circle-info mr-1.5 text-xs"></i> Tentang
+                    </button>
+                    <button onclick="switchTab('admin-dashboard')" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 transition border border-amber-500/20" data-tab="admin-dashboard">
+                        <i class="fa-solid fa-user-shield mr-1.5 text-xs"></i> Admin Portal
+                    </button>
+                </nav>
+
+                <!-- Auth Buttons & Quick Actions -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <button onclick="switchTab('login')" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:text-white bg-slate-800 hover:bg-slate-700 transition border border-slate-700">
+                        Masuk
+                    </button>
+                    <button onclick="switchTab('register')" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-900 bg-gradient-to-r from-sky-400 to-cyan-300 hover:from-sky-300 hover:to-cyan-200 transition shadow-lg cyan-glow">
+                        Daftar Nelayan / Pembeli
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="xl:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white border border-slate-700">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-800 bg-slate-900/95 px-4 pt-3 pb-6 space-y-2">
+            <button onclick="switchTab('home')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-house w-6"></i> Beranda</button>
+            <button onclick="switchTab('marketplace')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-gavel w-6"></i> Marketplace Lelang</button>
+            <button onclick="switchTab('akuakultur')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-fish-fins w-6"></i> Akuakultur</button>
+            <button onclick="switchTab('biodiversitas')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-water w-6"></i> Biodiversitas</button>
+            <button onclick="switchTab('budaya')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-ship w-6"></i> Budaya Bahari</button>
+            <button onclick="switchTab('komunitas')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-users w-6"></i> Komunitas</button>
+            <button onclick="switchTab('tentang')" class="w-full text-left px-4 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800 font-medium"><i class="fa-solid fa-circle-info w-6"></i> Tentang Kami</button>
+            <button onclick="switchTab('admin-dashboard')" class="w-full text-left px-4 py-2.5 rounded-lg text-amber-400 hover:bg-amber-500/10 font-semibold border border-amber-500/20"><i class="fa-solid fa-user-shield w-6"></i> Admin Dashboard</button>
+            <div class="pt-4 border-t border-slate-800 flex gap-2">
+                <button onclick="switchTab('login')" class="w-1/2 py-2.5 rounded-xl bg-slate-800 text-slate-200 text-sm font-semibold">Masuk</button>
+                <button onclick="switchTab('register')" class="w-1/2 py-2.5 rounded-xl bg-sky-400 text-slate-900 text-sm font-semibold">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow">
+
+        <!-- ==================== TAB 1: BERANDA (HOME) ==================== -->
+        <section id="tab-home" class="tab-content active">
+            <!-- Hero Section -->
+            <div class="relative overflow-hidden py-20 lg:py-28 ocean-gradient border-b border-slate-800">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(56,189,248,0.15),transparent_50%)]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-semibold mb-6">
+                                <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+                                Platform Lelang Perikanan Terintegrasi Pertama di Indonesia
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6">
+                                Pasar Lelang Laut & <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-cyan-300 to-teal-200">Hasil Akuakultur</span> Transparan
+                            </h1>
+                            <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                                Menghubungkan nelayan lokal, petambak akuakultur, pabrik pengolahan, hingga konsumen akhir melalui sistem lelang digital real-time, adil, dan terpercaya.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button onclick="switchTab('marketplace')" class="px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-sky-400 to-cyan-300 text-slate-900 hover:from-sky-300 hover:to-cyan-200 transition shadow-xl cyan-glow flex items-center gap-3">
+                                    <i class="fa-solid fa-gavel"></i> Jelajahi Lelang Aktif
+                                </button>
+                                <button onclick="switchTab('akuakultur')" class="px-8 py-4 rounded-xl font-bold bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-3">
+                                    <i class="fa-solid fa-circle-play text-sky-400"></i> Solusi Akuakultur
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hero Stats Cards -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                                <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-4">
+                                    <i class="fa-solid fa-weight-hanging"></i>
+                                </div>
+                                <h3 class="text-3xl font-extrabold text-white">1,250+ Ton</h3>
+                                <p class="text-sm text-slate-400 mt-1">Hasil Laut Terlelang / Bulan</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                                <div class="w-12 h-12 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-2xl mb-4">
+                                    <i class="fa-solid fa-handshake"></i>
+                                </div>
+                                <h3 class="text-3xl font-extrabold text-white">8,400+</h3>
+                                <p class="text-sm text-slate-400 mt-1">Nelayan & Mitra Terdaftar</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-4">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                </div>
+                                <h3 class="text-3xl font-extrabold text-white">99.4%</h3>
+                                <p class="text-sm text-slate-400 mt-1">Akurasi Transaksi Real-time</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl border border-slate-700/60">
+                                <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4">
+                                    <i class="fa-solid fa-coins"></i>
+                                </div>
+                                <h3 class="text-3xl font-extrabold text-white">Rp 42B+</h3>
+                                <p class="text-sm text-slate-400 mt-1">Total Nilai Transaksi Sektor</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Categories / Pillars -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4">Ekosistem Bahari & Perikanan Terintegrasi</h2>
+                    <p class="text-slate-400">Lelong.ID tidak hanya sekadar marketplace lelang, melainkan wadah edukasi, sains biodiversitas, konservasi, serta pelestarian budaya nelayan Nusantara.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="glass-card glass-card-hover p-8 rounded-2xl border border-slate-800" onclick="switchTab('marketplace')">
+                        <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Marketplace Lelang Real-Time</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Dapatkan ikan segar kualitas ekspor, udang, kepiting, dan komoditas laut unggulan dengan penawaran harga transparan langsung dari pelabuhan.
+                        </p>
+                        <span class="text-sky-400 font-semibold text-sm flex items-center gap-2">
+                            Masuk Marketplace <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-card glass-card-hover p-8 rounded-2xl border border-slate-800" onclick="switchTab('akuakultur')">
+                        <div class="w-14 h-14 rounded-2xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-fish"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Inovasi Akuakultur Modern</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Teknologi budidaya bandeng, kerapu, udang vaname, serta rumput laut terlanjut dengan monitoring kualitas air berbasis IoT.
+                        </p>
+                        <span class="text-teal-400 font-semibold text-sm flex items-center gap-2">
+                            Pelajari Inovasi <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-card glass-card-hover p-8 rounded-2xl border border-slate-800" onclick="switchTab('biodiversitas')">
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Biodiversitas & Konservasi</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Edukasi pelestarian terumbu karang, perlindungan spesies langka, dan menjaga keberlanjutan ekosistem pesisir Indonesia.
+                        </p>
+                        <span class="text-emerald-400 font-semibold text-sm flex items-center gap-2">
+                            Jelajahi Spesies <i class="fa-solid fa-arrow-right"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 2: MARKETPLACE ==================== -->
+        <section id="tab-marketplace" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <!-- Page Title -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-white flex items-center gap-3">
+                            <i class="fa-solid fa-gavel text-sky-400"></i> Marketplace Lelang & Jual Beli
+                        </h1>
+                        <p class="text-slate-400 text-sm mt-1">Lelang ikan segar, udang, kepiting & komoditas laut langsung dari Tempat Pelelangan Ikan (TPI)</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Bidding Active
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Filter & Search Bar -->
+                <div class="glass-card p-4 rounded-2xl border border-slate-800 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="relative">
+                            <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-slate-500"></i>
+                            <input type="text" placeholder="Cari komoditas (mis. Kerapu, Udang)..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 text-sm">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 focus:outline-none focus:border-sky-500 text-sm">
+                                <option value="">Semua Kategori</option>
+                                <option value="ikan-laut">Ikan Tangkap Laut</option>
+                                <option value="akuakultur">Hasil Akuakultur/Tambak</option>
+                                <option value="krustasea">Krustasea & Udang</option>
+                                <option value="rumput-laut">Rumput Laut & Moluska</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 focus:outline-none focus:border-sky-500 text-sm">
+                                <option value="">Lokasi TPI / Pelabuhan</option>
+                                <option value="makassar">Pelabuhan Paotere, Makassar</option>
+                                <option value="muara-baru">Muara Baru, Jakarta</option>
+                                <option value="benoa">Benoa, Bali</option>
+                                <option value="bitung">Bitung, Sulawesi Utara</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="w-full py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-filter"></i> Terapkan Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketplace Product Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Product 1 -->
+                    <div class="glass-card glass-card-hover rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-48 bg-slate-800 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=600&q=80" alt="Ikan Kerapu Sunu" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full animate-pulse flex items-center gap-1">
+                                    <i class="fa-solid fa-fire"></i> LELANG SENGIT
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-md text-sky-300 text-xs font-semibold px-3 py-1 rounded-lg border border-sky-400/30">
+                                    <i class="fa-solid fa-clock mr-1"></i> Sisa: 02j 14m
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-lg font-bold text-white">Ikan Kerapu Sunu Merah (Grade A)</h3>
+                                </div>
+                                <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i> TPI Paotere, Makassar | 250 Kg Total</p>
+                                
+                                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800/80 space-y-2 text-xs mb-4">
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-400">Harga Awal:</span>
+                                        <span class="text-slate-300 font-medium">Rp 120.000 / Kg</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Penawaran Tertinggi:</span>
+                                        <span class="text-emerald-400 font-extrabold text-sm">Rp 165.000 / Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <button onclick="openBidModal('Ikan Kerapu Sunu Merah', '165000')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 hover:from-sky-400 hover:to-cyan-300 text-slate-950 font-bold text-sm transition shadow-lg cyan-glow">
+                                <i class="fa-solid fa-gavel mr-1"></i> Ajukan Penawaran (Bid)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="glass-card glass-card-hover rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-48 bg-slate-800 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=600&q=80" alt="Udang Vaname" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-sky-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full">
+                                    AKUAKULTUR
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-md text-sky-300 text-xs font-semibold px-3 py-1 rounded-lg border border-sky-400/30">
+                                    <i class="fa-solid fa-clock mr-1"></i> Sisa: 05j 40m
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white">Udang Vaname Size 40 (Fresh Cold)</h3>
+                                <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i> Tambak Bantaeng, Sulsel | 1.2 Ton</p>
+                                
+                                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800/80 space-y-2 text-xs mb-4">
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-400">Harga Awal:</span>
+                                        <span class="text-slate-300 font-medium">Rp 75.000 / Kg</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Penawaran Tertinggi:</span>
+                                        <span class="text-emerald-400 font-extrabold text-sm">Rp 88.500 / Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <button onclick="openBidModal('Udang Vaname Size 40', '88500')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 hover:from-sky-400 hover:to-cyan-300 text-slate-950 font-bold text-sm transition shadow-lg cyan-glow">
+                                <i class="fa-solid fa-gavel mr-1"></i> Ajukan Penawaran (Bid)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="glass-card glass-card-hover rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-48 bg-slate-800 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Kepiting Bakau" class="w-full h-full object-cover">
+                                <span class="absolute top-3 left-3 bg-amber-500 text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full">
+                                    PREMIUM
+                                </span>
+                                <span class="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-md text-sky-300 text-xs font-semibold px-3 py-1 rounded-lg border border-sky-400/30">
+                                    <i class="fa-solid fa-clock mr-1"></i> Sisa: 01j 10m
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white">Kepiting Bakau Super Jantan (>500g)</h3>
+                                <p class="text-xs text-slate-400 mb-4"><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i> TPI Bone, Sulsel | 180 Kg</p>
+                                
+                                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800/80 space-y-2 text-xs mb-4">
+                                    <div class="flex justify-between">
+                                        <span class="text-slate-400">Harga Awal:</span>
+                                        <span class="text-slate-300 font-medium">Rp 150.000 / Kg</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Penawaran Tertinggi:</span>
+                                        <span class="text-emerald-400 font-extrabold text-sm">Rp 195.000 / Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <button onclick="openBidModal('Kepiting Bakau Super', '195000')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 hover:from-sky-400 hover:to-cyan-300 text-slate-950 font-bold text-sm transition shadow-lg cyan-glow">
+                                <i class="fa-solid fa-gavel mr-1"></i> Ajukan Penawaran (Bid)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 3: AKUAKULTUR ==================== -->
+        <section id="tab-akuakultur" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h1 class="text-3xl font-extrabold text-white mb-3">Teknologi & Solusi Akuakultur Modern</h1>
+                    <p class="text-slate-400 text-sm">Meningkatkan produktivitas budidaya perikanan darat dan pesisir dengan pendekatan berkelanjutan, pakan berkualitas, serta pemantauan kualitas air.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="glass-card p-8 rounded-2xl border border-slate-800 flex gap-6 items-start">
+                        <div class="w-16 h-16 rounded-2xl bg-sky-500/20 text-sky-400 flex-shrink-0 flex items-center justify-center text-3xl">
+                            <i class="fa-solid fa-temperature-arrow-up"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">IoT Water Quality Sensor</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Sistem pemantauan pH, salinitas, dissolved oxygen (DO), dan suhu air tambak secara otomatis dengan notifikasi langsung ke HP pembudidaya.</p>
+                            <span class="text-sky-400 text-xs font-semibold uppercase tracking-wider">Integrasi Lelong Smart-Farmer</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl border border-slate-800 flex gap-6 items-start">
+                        <div class="w-16 h-16 rounded-2xl bg-teal-500/20 text-teal-400 flex-shrink-0 flex items-center justify-center text-3xl">
+                            <i class="fa-solid fa-wheat-awn"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Pakan Ramah Lingkungan</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">Formulasi pakan berbasis BSF (Black Soldier Fly) dan alga laut untuk mengurangi ketergantungan tepung ikan impor serta menekan FCR budidaya.</p>
+                            <span class="text-teal-400 text-xs font-semibold uppercase tracking-wider">Efisiensi Biaya Produksi hingga 25%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Komoditas Utama Budidaya -->
+                <h2 class="text-2xl font-bold text-white mb-6">Komoditas Akuakultur Unggulan</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <div class="h-36 rounded-lg bg-slate-800 mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&w=400&q=80" alt="Ikan Bandeng" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-white">Bandeng Super (Chanos chanos)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Masa panen: 4 Bulan | Salinitas 15-25 ppt</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <div class="h-36 rounded-lg bg-slate-800 mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534483509719-3feaee7c30da?auto=format&fit=crop&w=400&q=80" alt="Kerapu Bebek" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-white">Kerapu Bebek / Macan</h4>
+                        <p class="text-xs text-slate-400 mt-1">Budidaya KJA | Nilai Ekspor Tinggi</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <div class="h-36 rounded-lg bg-slate-800 mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&w=400&q=80" alt="Udang Vaname" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-white">Udang Vaname Intensif</h4>
+                        <p class="text-xs text-slate-400 mt-1">Padat tebar tinggi | Sistem Bioflok</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-slate-800">
+                        <div class="h-36 rounded-lg bg-slate-800 mb-4 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=80" alt="Rumput Laut" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-white">Rumput Laut (Kappaphycus)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Kandungan Karagenan | Pantai Dangkal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 4: BIODIVERSITAS ==================== -->
+        <section id="tab-biodiversitas" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h1 class="text-3xl font-extrabold text-white mb-3">Biodiversitas Laut & Terumbu Karang</h1>
+                    <p class="text-slate-400 text-sm">Indonesia berada di pusat Segitiga Terumbu Karang Dunia (Coral Triangle). Komitmen kami adalah menjaga kelestarian hayati untuk masa depan bahari.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-dharmachakra"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Restorasi Terumbu Karang</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Program transplantasi karang menggunakan struktur biorock untuk mempercepat pemulihan terumbu di kepulauan Spermonde dan Wakatobi.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-fish-fins"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Perlindungan Biota Langka</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Edukasi nelayan untuk tidak menangkap spesies dilindungi seperti Penyu Hijau, Pari Manta, Hiu Paus, dan Kima Giant Clam.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-tree"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Konservasi Hutan Mangrove</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Mangrove sebagai benteng alam penahan abrasi pantai serta tempat pemijahan (nursery ground) alami udang dan kepiting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 5: BUDAYA BAHARI ==================== -->
+        <section id="tab-budaya" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h1 class="text-3xl font-extrabold text-white mb-3">Warisan Budaya & Kearifan Lokal Bahari</h1>
+                    <p class="text-slate-400 text-sm">Penjaga tradisi kebaharian Nusantara dari generasi ke generasi, memperkuat jati diri bangsa maritim.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl border border-slate-800">
+                        <div class="h-52 rounded-xl bg-slate-800 mb-6 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="Kapal Pinisi" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Perahu Pinisi Bugis-Makassar</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Mahakarya seni pembuatan kapal kayu tradisional dari Bulukumba yang diakui UNESCO sebagai Warisan Budaya Takbenda Dunia. Menjadi simbol ketangguhan pelaut Indonesia menjelajah samudra.
+                        </p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl border border-slate-800">
+                        <div class="h-52 rounded-xl bg-slate-800 mb-6 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Pantai Losari" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Tradisi & Festival Nelayan Pesisir</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Upacara adat Petik Laut dan Pesta Nelayan di berbagai wilayah pesisir sebagai wujud rasa syukur atas kelimpahan hasil laut serta doa keselamatan bagi para pelaut yang berlayar.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 6: KOMUNITAS ==================== -->
+        <section id="tab-komunitas" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-white">Komunitas Forum Nelayan & Pembudidaya</h1>
+                        <p class="text-slate-400 text-sm mt-1">Wadah diskusi, berbagi info cuaca laut, info harga pasaran, serta tips penangkapan.</p>
+                    </div>
+                    <button class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-sm transition flex items-center gap-2">
+                        <i class="fa-solid fa-pen-to-square"></i> Buat Diskusi Baru
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="glass-card p-6 rounded-xl border border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-xl font-bold text-sky-400 flex-shrink-0">
+                            KM
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-bold text-white">Capt. Daeng Rasyid</span>
+                                <span class="text-xs text-sky-400 bg-sky-500/10 px-2 py-0.5 rounded border border-sky-400/20">Nelayan Tangkap</span>
+                                <span class="text-xs text-slate-500">• 2 jam lalu</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-200 mb-2">Update Kondisi Gelombang & Angin Musim Barat di Selat Makassar</h4>
+                            <p class="text-sm text-slate-400 mb-4">Rekan-rekan kapten yang mau berangkat ke arah Kangean, harap waspada angin kencang di koordinat 5°S 118°E. Ketinggian gelombang mencapai 2.5 meter.</p>
+                            <div class="flex gap-6 text-xs text-slate-400">
+                                <button class="hover:text-sky-400"><i class="fa-regular fa-thumbs-up mr-1"></i> 34 Menyukai</button>
+                                <button class="hover:text-sky-400"><i class="fa-regular fa-comment mr-1"></i> 12 Komentar</button>
+                                <button class="hover:text-sky-400"><i class="fa-solid fa-share-nodes mr-1"></i> Bagikan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl border border-slate-800 flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center text-xl font-bold text-teal-400 flex-shrink-0">
+                            TB
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-bold text-white">Hj. Nurhayati</span>
+                                <span class="text-xs text-teal-400 bg-teal-500/10 px-2 py-0.5 rounded border border-teal-400/20">Petambak Vaname</span>
+                                <span class="text-xs text-slate-500">• 5 jam lalu</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-200 mb-2">Pengalaman Mengatasi Peningkatan Nitrit pada Tambak Intensif DOC 60</h4>
+                            <p class="text-sm text-slate-400 mb-4">Alhamdulillah setelah aplikasi probiotik kalsium karbonat dan pengurangan pakan 15%, kadar nitrit kembali stabil di angka 0.05 ppm.</p>
+                            <div class="flex gap-6 text-xs text-slate-400">
+                                <button class="hover:text-sky-400"><i class="fa-regular fa-thumbs-up mr-1"></i> 58 Menyukai</button>
+                                <button class="hover:text-sky-400"><i class="fa-regular fa-comment mr-1"></i> 27 Komentar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 7: TENTANG KAMI ==================== -->
+        <section id="tab-tentang" class="tab-content">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-extrabold text-white mb-4">Tentang Lelong.ID</h1>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Transformasi digital rantai pasok perikanan Indonesia untuk kesejahteraan nelayan dan transparansi harga pasar.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl border border-slate-800 space-y-6 text-slate-300 leading-relaxed mb-8">
+                    <h2 class="text-2xl font-bold text-white border-b border-slate-800 pb-3">Visi Kami</h2>
+                    <p>Menjadi platform ekosistem lelang dan transaksi perikanan digital terbesar di Asia Tenggara yang menghubungkan langsung produsen laut dengan pasar secara adil, efisien, dan transparan.</p>
+                    
+                    <h2 class="text-2xl font-bold text-white border-b border-slate-800 pb-3 pt-4">Misi Utama</h2>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Memberdayakan nelayan kecil dan pembudidaya akuakultur agar mendapatkan harga jual wajar.</li>
+                        <li>Menghilangkan rantai tengkulak yang tidak transparan melalui sistem lelang terbuka.</li>
+                        <li>Mendukung kepastian pasokan komoditas perikanan segar standar mutu industri dan ekspor.</li>
+                        <li>Mendorong penerapan praktik perikanan berkelanjutan (Sustainable Fisheries).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 8: ADMIN DASHBOARD ==================== -->
+        <section id="tab-admin-dashboard" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <!-- Admin Top Bar -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-xs font-bold border border-amber-500/30">ADMIN PORTAL</span>
+                            <h1 class="text-2xl font-extrabold text-white">Sistem Manajemen Lelong.ID</h1>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1">Kelola lelang, kampanye, data pengguna, verifikasi produk, dan pengaturan sistem.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="showAdminSection('overview')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Overview</button>
+                        <button onclick="showAdminSection('campaign')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Campaign Lelang</button>
+                        <button onclick="showAdminSection('produk')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Produk</button>
+                        <button onclick="showAdminSection('permintaan')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Permintaan</button>
+                        <button onclick="showAdminSection('pengguna')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Pengguna</button>
+                        <button onclick="showAdminSection('pengaturan')" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-semibold">Pengaturan</button>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Overview -->
+                <div id="admin-sec-overview" class="admin-sec space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div class="glass-card p-5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400">Total Lelang Aktif</span>
+                            <h3 class="text-2xl font-bold text-sky-400 mt-1">48 Lelang</h3>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400">Transaksi Hari Ini</span>
+                            <h3 class="text-2xl font-bold text-emerald-400 mt-1">Rp 342.500.000</h3>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400">Pengguna Terverifikasi</span>
+                            <h3 class="text-2xl font-bold text-amber-400 mt-1">3,420 Member</h3>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl border border-slate-800">
+                            <span class="text-xs text-slate-400">Permintaan Pending</span>
+                            <h3 class="text-2xl font-bold text-rose-400 mt-1">12 Kasus</h3>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Table -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <h3 class="text-lg font-bold text-white mb-4">Aktivitas Lelang Terbaru</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="bg-slate-900 text-slate-400 uppercase text-[10px] tracking-wider">
+                                    <tr>
+                                        <th class="p-3">ID Lelang</th>
+                                        <th class="p-3">Komoditas</th>
+                                        <th class="p-3">Penjual / TPI</th>
+                                        <th class="p-3">Penawaran Tertinggi</th>
+                                        <th class="p-3">Status</th>
+                                        <th class="p-3">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-800">
+                                    <tr>
+                                        <td class="p-3 font-mono text-sky-400">#L-9842</td>
+                                        <td class="p-3 font-semibold text-white">Kerapu Sunu Merah (250 Kg)</td>
+                                        <td class="p-3">Koperasi Nelayan Paotere</td>
+                                        <td class="p-3 text-emerald-400 font-bold">Rp 165.000 / Kg</td>
+                                        <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">Aktif</span></td>
+                                        <td class="p-3"><button class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-sky-400">Detail</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-mono text-sky-400">#L-9841</td>
+                                        <td class="p-3 font-semibold text-white">Udang Vaname Size 40 (1.2 Ton)</td>
+                                        <td class="p-3">PT Tambak Bahari Bantaeng</td>
+                                        <td class="p-3 text-emerald-400 font-bold">Rp 88.500 / Kg</td>
+                                        <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px]">Aktif</span></td>
+                                        <td class="p-3"><button class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-sky-400">Detail</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Campaign -->
+                <div id="admin-sec-campaign" class="admin-sec hidden space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-white">Manajemen Campaign & Sesi Lelang</h3>
+                        <button class="px-4 py-2 rounded-xl bg-sky-500 text-slate-950 font-bold text-xs">+ Tambah Campaign Baru</button>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 text-sm text-slate-300">
+                        <p class="mb-4">Kelola periode lelang khusus, lelang komoditas skala besar, dan promo biaya transaksi nelayan.</p>
+                        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+                            <span class="font-bold text-white">Campaign Aktif: "Lelang Raya Harvest Vaname Sulsel 2026"</span>
+                            <p class="text-xs text-slate-400 mt-1">Periode: 20 Jul 2026 - 30 Jul 2026 | Total Volume: 25 Ton</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Produk -->
+                <div id="admin-sec-produk" class="admin-sec hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Verifikasi & Katalog Produk</h3>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <p class="text-sm text-slate-400 mb-4">Daftar produk yang diajukan nelayan sebelum ditayangkan di marketplace lelang.</p>
+                        <div class="text-xs text-emerald-400 bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20">
+                            <i class="fa-solid fa-check-circle mr-1"></i> Semua produk terbaru telah diverifikasi kualitas dan kesegaran mutunya.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Permintaan -->
+                <div id="admin-sec-permintaan" class="admin-sec hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Kelola Permintaan & Dispute Transaksi</h3>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <p class="text-sm text-slate-400">Pengajuan klaim kualitas, keluhan pengiriman cold-chain, serta penarikan dana (payout) nelayan.</p>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Pengguna -->
+                <div id="admin-sec-pengguna" class="admin-sec hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Kelola Pengguna (Nelayan, Pembeli, Admin)</h3>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                        <p class="text-sm text-slate-400">Verifikasi dokumen KTP/SIUP perusahaan pembeli, akun nelayan terdaftar, dan peran hak akses.</p>
+                    </div>
+                </div>
+
+                <!-- Admin Sub-Section: Pengaturan -->
+                <div id="admin-sec-pengaturan" class="admin-sec hidden space-y-6">
+                    <h3 class="text-xl font-bold text-white">Pengaturan Sistem & Payment Gateway</h3>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Persentase Fee Platform Lelang (%)</label>
+                            <input type="text" value="1.5%" class="w-full max-w-xs px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-400 mb-1">Batas Waktu Bidding Otomatis (Detik)</label>
+                            <input type="text" value="30 Detik" class="w-full max-w-xs px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white text-sm">
+                        </div>
+                        <button class="px-5 py-2.5 rounded-xl bg-sky-500 text-slate-950 font-bold text-xs">Simpan Pengaturan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 9: LOGIN ==================== -->
+        <section id="tab-login" class="tab-content">
+            <div class="max-w-md mx-auto px-4 py-16">
+                <div class="glass-card p-8 rounded-2xl border border-slate-800">
+                    <div class="text-center mb-8">
+                        <div class="w-12 h-12 rounded-xl ocean-gradient flex items-center justify-center text-white mx-auto mb-3">
+                            <i class="fa-solid fa-anchor text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">Masuk ke Lelong.ID</h2>
+                        <p class="text-xs text-slate-400 mt-1">Akses akun lelang, transaksi & pantau tawaran Anda</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); alert('Login Berhasil!'); switchTab('home');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Email / No. HP</label>
+                            <input type="text" required placeholder="nelayan@lelong.id" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Kata Sandi</label>
+                            <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div class="flex justify-between items-center text-xs">
+                            <label class="flex items-center text-slate-400">
+                                <input type="checkbox" class="mr-2 rounded bg-slate-900 border-slate-700"> Ingat saya
+                            </label>
+                            <a href="#" class="text-sky-400 hover:underline">Lupa Kata Sandi?</a>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 font-bold text-sm transition shadow-lg cyan-glow">
+                            Masuk Sekarang
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-6 text-xs text-slate-400">
+                        Belum memiliki akun? <button onclick="switchTab('register')" class="text-sky-400 font-semibold hover:underline">Daftar Akun Baru</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== TAB 10: REGISTER ==================== -->
+        <section id="tab-register" class="tab-content">
+            <div class="max-w-md mx-auto px-4 py-16">
+                <div class="glass-card p-8 rounded-2xl border border-slate-800">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-white">Daftar Akun Lelong.ID</h2>
+                        <p class="text-xs text-slate-400 mt-1">Bergabunglah sebagai Nelayan, Pembudidaya, atau Pembeli Pembeli Komoditas</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); alert('Pendaftaran Berhasil! Silakan Masuk.'); switchTab('login');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Peran Pengguna</label>
+                            <select class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                                <option value="nelayan">Nelayan Tangkap / Koperasi TPI</option>
+                                <option value="petambak">Pembudidaya Akuakultur</option>
+                                <option value="pembeli">Pembeli Grosir / Pabrik Pengolahan</option>
+                                <option value="umum">Konsumen Perorangan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Nama Lengkap / Nama Koperasi</label>
+                            <input type="text" required placeholder="Ahmad Rasyid" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Email / WhatsApp</label>
+                            <input type="text" required placeholder="081234567890" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Kata Sandi</label>
+                            <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 text-sm focus:outline-none focus:border-sky-500">
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-400 text-slate-950 font-bold text-sm transition shadow-lg cyan-glow">
+                            Daftar Sekarang
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-6 text-xs text-slate-400">
+                        Sudah punya akun? <button onclick="switchTab('login')" class="text-sky-400 font-semibold hover:underline">Masuk</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BID MODAL -->
+    <div id="bid-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-card max-w-md w-full p-6 rounded-2xl border border-slate-700 relative">
+            <button onclick="closeBidModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h3 class="text-xl font-bold text-white mb-2">Ajukan Penawaran Lelang</h3>
+            <p id="modal-product-name" class="text-sm text-sky-400 font-semibold mb-4">Komoditas</p>
+
+            <form onsubmit="event.preventDefault(); alert('Penawaran Anda berhasil diajukan!'); closeBidModal();" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Penawaran Tertinggi Saat Ini</label>
+                    <input id="modal-current-bid" type="text" readonly class="w-full px-4 py-2 bg-slate-900 border border-slate-800 text-emerald-400 font-bold rounded-xl text-sm" value="Rp 0">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Masukkan Harga Penawaran Anda (per Kg)</label>
+                    <input type="number" required placeholder="Masukkan nominal lebih tinggi..." class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 text-white font-bold rounded-xl text-sm focus:border-sky-500 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition">
+                    Kirim Penawaran (Place Bid)
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg ocean-gradient flex items-center justify-center text-white text-sm">
+                            <i class="fa-solid fa-anchor"></i>
+                        </div>
+                        <span class="text-xl font-black text-white">LELONG<span class="text-sky-400">.ID</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Platform lelang digital terpercaya untuk komoditas perikanan laut dan hasil budidaya akuakultur Indonesia.
+                    </p>
+                    <div class="flex space-x-3 text-slate-400">
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:text-sky-400 border border-slate-800"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:text-sky-400 border border-slate-800"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-900 flex items-center justify-center hover:text-sky-400 border border-slate-800"><i class="fa-brands fa-youtube text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Navigasi Utama</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><button onclick="switchTab('home')" class="hover:text-sky-400">Beranda</button></li>
+                        <li><button onclick="switchTab('marketplace')" class="hover:text-sky-400">Marketplace Lelang</button></li>
+                        <li><button onclick="switchTab('akuakultur')" class="hover:text-sky-400">Inovasi Akuakultur</button></li>
+                        <li><button onclick="switchTab('biodiversitas')" class="hover:text-sky-400">Konservasi Laut</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Pusat Bantuan</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#" class="hover:text-sky-400">Panduan Lelang Nelayan</a></li>
+                        <li><a href="#" class="hover:text-sky-400">Syarat & Ketentuan Bidding</a></li>
+                        <li><a href="#" class="hover:text-sky-400">Kebijakan Mutu Cold-Chain</a></li>
+                        <li><a href="#" class="hover:text-sky-400">Hubungi Layanan Pelanggan</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Kontak Sekretariat</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-2">
+                        <i class="fa-solid fa-location-dot text-sky-400 mr-2"></i> Kawasan Pelabuhan Paotere, Makassar, Sulawesi Selatan
+                    </p>
+                    <p class="text-xs text-slate-400 mb-2">
+                        <i class="fa-solid fa-envelope text-sky-400 mr-2"></i> info@lelong.id
+                    </p>
+                    <p class="text-xs text-slate-400">
+                        <i class="fa-solid fa-phone text-sky-400 mr-2"></i> +62 811-4455-6677
+                    </p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-900 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p>&copy; 2026 Lelong.ID - Seluruh Hak Cipta Dilindungi Undang-Undang.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-slate-400">Privasi</a>
+                    <a href="#" class="hover:text-slate-400">Syarat Layanan</a>
+                    <a href="#" class="hover:text-slate-400">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Tab Switcher Function
+        function switchTab(tabId) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show target tab
+            const targetTab = document.getElementById('tab-' + tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            // Update Nav Active States
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('text-sky-400', 'bg-slate-800/80');
+                } else {
+                    btn.classList.remove('text-sky-400', 'bg-slate-800/80');
+                }
+            });
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Admin Sub-Section Switcher
+        function showAdminSection(sectionId) {
+            const adminSecs = document.querySelectorAll('.admin-sec');
+            adminSecs.forEach(sec => sec.classList.add('hidden'));
+
+            const targetSec = document.getElementById('admin-sec-' + sectionId);
+            if (targetSec) {
+                targetSec.classList.remove('hidden');
+            }
+        }
+
+        // Bid Modal Functions
+        function openBidModal(productName, currentBid) {
+            document.getElementById('modal-product-name').innerText = productName;
+            document.getElementById('modal-current-bid').value = 'Rp ' + parseInt(currentBid).toLocaleString('id-ID') + ' / Kg';
+            document.getElementById('bid-modal').classList.remove('hidden');
+        }
+
+        function closeBidModal() {
+            document.getElementById('bid-modal').classList.add('hidden');
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
